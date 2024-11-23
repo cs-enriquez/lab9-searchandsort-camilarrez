@@ -20,12 +20,13 @@ void printArray(flexibleType arr[], int n) {
 // return true if target exists in the array within this range,
 //    return false otherwise
 bool seqSearch(string target, string arr[], int start, int end) {
-    for(int i = start; i < end; i++){
+    for(int i = start; i <= end; i++){
         if(arr[i] == target){
             return true;
         }
+      
     }
-    return false;
+    return false; //target is not in array
 }
 
 // Implement an iterative binary search 
@@ -111,10 +112,10 @@ void swap(double darray[], int index1, int index2) {
 // Step 2: implement a function minFind() that will find and return 
 //          the **index** of the smallest element in an array
 
-int minFind(double darray[], int start, int length) {
-   
-    int smallest = start;
-    for(int i = start+1; i < length; i++){
+int minFind(double darray[], int length) {
+  
+    int smallest = 0;
+    for(int i = 1; i < length; i++){
         if(darray[smallest]>darray[i]){
             smallest = i; //update smallest to be i(the smaller value in this case)
         }
@@ -136,18 +137,19 @@ int minFind(double darray[], int start, int length) {
 //         *** You can make this recursive, if you wish!
 // */
 
-void newSort(double darray[],int start, int n) {
+void newSort(double darray[], int n) {
     //BASE
-    if(start>= n -1){
+  
+    if(1>= n){
         return;
     }
 
     //recursive
         //find index of smallest element
-    int smallest = minFind(darray, start,n);
+    int smallest = minFind(darray,n);
 
     //swap smallest element with first index
-    swap(darray, start, smallest);
-    newSort(darray, start+1,n ); // increment start to start on next index
+    swap(darray, 0, smallest);
+    newSort(darray +1,n -1); // increment array index to next one and length to be one less
   
 }
