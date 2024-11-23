@@ -9,7 +9,7 @@ using namespace std;
 template <typename flexibleType> // ???
 void printArray(flexibleType arr[], int n) {
     for(int i = 0; i < n; i++){
-        cout << arr[i] << " ;"
+        cout << arr[i] << " ";
     }
     cout << endl;
 }
@@ -32,41 +32,51 @@ bool seqSearch(string target, string arr[], int start, int end) {
 // Return true if target exists in the array with size n,
 //    return false otherwise 
 bool binSearch(float target, float arr[], int n) {
-    for(int i =0; i < n; i++){
-        if(target == arr[i]){
-            return true;
-        }
-    }
-    return false;	
-}
+    int left = 0;
+    int right = n-1;
 
+   while(left<=right){
+    int mid = left +(right-left)/2;
+
+    if(arr[mid] == target){
+        return true;
+    }else if(arr[mid]< target){
+        left = mid+1;
+    }else{
+        right = mid -1;
+    }
+    
+    }
+return false;	
+}
 // Implement a recursive binary search 
 // Return true if target exists in the array with size n
 //   return false otherwise
 bool binSearchR(char target, char charray[], int n) {
     //base 
     //find middle
-    int mid = n/2;
-
-    if(n<=0)[
+    
+    if(n<=0){
         return false; //the array is empty
-    ]else if(target == charray[mid]){
+    }
+    int mid = n/2;
+    
+     if(target == charray[mid]){
         return true; 
     }
 
     //recursive
      //if target is greater the middle, search the "right"
   
-    if(target> charray[mid){
-        int *start = &charray[mid+1];
-        return binSearchR(start, n/2, target);
+    if(target> charray[mid]){
+       // char *start = &charray[mid+1];
+        return binSearchR(target, charray + mid +1, n-mid-1);
     //if target is greater the middle, search the "right"
 
     //if target is smaller than middle, search the "left"
-    }else(target< charray[mid]){
-      return binSearch(arr, n/2, target);
-    
     }
+      return binSearchR(target, charray, mid);
+    
 }
 
 // Implement a brand new sorting algorithm
@@ -101,7 +111,7 @@ void swap(double darray[], int index1, int index2) {
 // Step 2: implement a function minFind() that will find and return 
 //          the **index** of the smallest element in an array
 
-int minFind(double darray[], int start int length) {
+int minFind(double darray[], int start, int length) {
    
     int smallest = start;
     for(int i = start+1; i < length; i++){
