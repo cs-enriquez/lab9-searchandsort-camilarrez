@@ -7,7 +7,12 @@ using namespace std;
 //   bonus! try to implement your function so that it can accept
 //     many types of data (int, char, string, etc.)
 template <typename flexibleType> // ???
-void printArray(...) {}
+void printArray(flexibleType arr[], int n) {
+    for(int i = 0; i < n; i++){
+        cout << arr[i] << " ;"
+    }
+    cout << endl;
+}
 
 // Implement a sequential search algorithm
 // your function should search for a target value (target)
@@ -27,7 +32,11 @@ bool seqSearch(string target, string arr[], int start, int end) {
 // Return true if target exists in the array with size n,
 //    return false otherwise 
 bool binSearch(float target, float arr[], int n) {
-    
+    for(int i =0; i < n; i++){
+        if(target == arr[i]){
+            return true;
+        }
+    }
     return false;	
 }
 
@@ -35,9 +44,29 @@ bool binSearch(float target, float arr[], int n) {
 // Return true if target exists in the array with size n
 //   return false otherwise
 bool binSearchR(char target, char charray[], int n) {
-    
+    //base 
+    //find middle
+    int mid = n/2;
 
-    return false;
+    if(n<=0)[
+        return false; //the array is empty
+    ]else if(target == charray[mid]){
+        return true; 
+    }
+
+    //recursive
+     //if target is greater the middle, search the "right"
+  
+    if(target> charray[mid){
+        int *start = &charray[mid+1];
+        return binSearchR(start, n/2, target);
+    //if target is greater the middle, search the "right"
+
+    //if target is smaller than middle, search the "left"
+    }else(target< charray[mid]){
+      return binSearch(arr, n/2, target);
+    
+    }
 }
 
 // Implement a brand new sorting algorithm
@@ -61,10 +90,54 @@ Step 3: Finally, use your two functions above to complete the following in newSo
         *** You can make this recursive, if you wish!
 */
 
-void swap(double darray[], ...) {}
-
-int minFind(double darray[], ...) {
-    return -1;
+// Step 1: implement a function swap() that will swap any two elements in an array,
+//          given their indices
+void swap(double darray[], int index1, int index2) {
+    double temp = darray[index1]; // copy first number to temp
+    darray[index1] = darray[index2]; // copy 2nd number to first index
+    darray[index2] = temp; // copy temp value(index1) to index 2
 }
 
-void newSort(double darray[], int n) {}
+// Step 2: implement a function minFind() that will find and return 
+//          the **index** of the smallest element in an array
+
+int minFind(double darray[], int start int length) {
+   
+    int smallest = start;
+    for(int i = start+1; i < length; i++){
+        if(darray[smallest]>darray[i]){
+            smallest = i; //update smallest to be i(the smaller value in this case)
+        }
+    
+    }
+    return smallest;
+}
+
+// Step 3: Finally, use your two functions above to complete the following in newSort():
+//         1 - search through the array to find the location of the smallest value
+//         2 - swap this value with the value at the start of the array
+//         3 - the first element is now sorted! 
+//             Redo your sort on the remaining elements (from index 1 to end)
+//             On the next iteration, you should be swapping the smallest remaining value 
+//                 with the second index value in the array
+//             ...then swapping the smallest remaining value with the third indexed value... etc.
+            
+//         4 - continue iterating until you reach the end of the list
+//         *** You can make this recursive, if you wish!
+// */
+
+void newSort(double darray[],int start, int n) {
+    //BASE
+    if(start>= n -1){
+        return;
+    }
+
+    //recursive
+        //find index of smallest element
+    int smallest = minFind(darray, start,n);
+
+    //swap smallest element with first index
+    swap(darray, start, smallest);
+    newSort(darray, start+1,n ); // increment start to start on next index
+  
+}
