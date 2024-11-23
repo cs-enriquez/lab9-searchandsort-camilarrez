@@ -15,6 +15,11 @@ void printArray(...) {}
 // return true if target exists in the array within this range,
 //    return false otherwise
 bool seqSearch(string target, string arr[], int start, int end) {
+    for(int i = start; i < end; i++){
+        if(arr[i] == target){
+            return true;
+        }
+    }
     return false;
 }
 
@@ -22,6 +27,7 @@ bool seqSearch(string target, string arr[], int start, int end) {
 // Return true if target exists in the array with size n,
 //    return false otherwise 
 bool binSearch(float target, float arr[], int n) {
+    
     return false;	
 }
 
@@ -29,9 +35,7 @@ bool binSearch(float target, float arr[], int n) {
 // Return true if target exists in the array with size n
 //   return false otherwise
 bool binSearchR(char target, char charray[], int n) {
-    // base case
-
-    //general case
+    
 
     return false;
 }
